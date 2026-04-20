@@ -17,6 +17,8 @@ jobs:
         runs-on: ubuntu-latest
         needs: Checkout
         steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
         -   name: SetUp Pyton Environment
             uses: actions/setup-python@v4
             with:
@@ -27,24 +29,27 @@ jobs:
         runs-on: ubuntu-latest
         needs: Setup
         steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
         -   name: Unit Test
             run: echo "Unit Test Complite"
 
-    Install:
-        name: Install Dependencies Stage
+    Deploy:
+        name: Deploy Stage
         runs-on: ubuntu-latest
         needs: UnitTest
         steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
+        -   name: SetUp Pyton Environment
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.12'
         -   name: libraries Install
             run: pip install -r requirements.txt
-
-    Deploy:
-        name: Run on Production Stage
-        runs-on: ubuntu-latest
-        needs: Install
-        steps:
         -   name: Deploy
             run: |
                 python app.py &
                 sleep 5
                 echo "App Started"
+
