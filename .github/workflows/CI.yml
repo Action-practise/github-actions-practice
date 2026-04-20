@@ -1,0 +1,16 @@
+name: Sahil Pipline
+
+on:
+    push:
+     branches: [prac1]
+
+jobs:
+    Checkout:
+        runs-on: ubuntu-latest
+
+        steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
+
+        -   name: Deploy
+            run: echo "Sucessfully Deployed"
