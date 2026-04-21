@@ -41,7 +41,7 @@ jobs:
                 name: my-app
 
         -   name: Unit Test
-            run: echo "Unit Test Complite"
+            run: pytest
 
     Deploy:
         name: Deploy Stage
