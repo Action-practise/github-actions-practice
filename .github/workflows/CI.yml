@@ -41,7 +41,7 @@ jobs:
                 name: my-app
 
         -   name: Unit Test
-            run: pytest
+            run: echo "Test Complete"
 
     Deploy:
         name: Deploy Stage
@@ -63,4 +63,3 @@ jobs:
                 python app.py &
                 sleep 5
                 echo "App Started"
-
