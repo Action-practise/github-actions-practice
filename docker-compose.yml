@@ -1,0 +1,8 @@
+version: "3.8"
+    services:
+      app:
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
+        container_name: github-action-test
+        ports:
+          - "8080:8080"
+        restart: always

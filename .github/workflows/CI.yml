@@ -68,4 +68,12 @@ jobs:
                 context: .
                 push: true
                 tags: ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
+
+        -   name: Pull Latest Image
+            run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
+
+        -   name: Docker-Compose Deploy
+            run: docker compose down && docker compose up -d
+        -   name: Deployment Status
+            run: echo "✅ Deployed with Docker Compose using image ${{ github.sha }}"             
                 
