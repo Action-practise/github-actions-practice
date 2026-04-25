@@ -43,33 +43,13 @@ jobs:
         -   name: Unit Test
             run: echo "Test Complete"
 
-    Deploy:
-        name: Deploy Stage
+
+    Docker_Deploy:
         runs-on: ubuntu-latest
         needs: UnitTest
         steps:
         -   name: Download Code
-            uses: actions/download-artifact@v4
-            with:
-                name: my-app
-        -   name: SetUp Python Environment
-            uses: actions/setup-python@v4
-            with:
-                python-version: '3.12'
-        -   name: libraries Install
-            run: pip install -r requirements.txt
-        -   name: Deploy
-            run: |
-                python app.py &
-                sleep 5
-                echo "App Started"
-
-    Docker_Deploy:
-        runs-on: ubuntu-latest
-        needs: Deploy
-        steps:
-        -   name: Download Code
-            uses: action/downlaod-artifact@v4
+            uses: actions/downlaod-artifact@v4
             with:
                 name: my-app
 
@@ -87,5 +67,5 @@ jobs:
             with:
                 context: .
                 push: true
-                tags: gitaction_test:${{ github.sha }}
+                tags: ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
                 
