@@ -32,7 +32,7 @@ jobs:
 
     UnitTest:
         name: Unit Test Stage
-        runs-on: Dev
+        runs-on: self-hosted
         needs: Setup
         steps:
         -   name: Download Code
@@ -45,7 +45,7 @@ jobs:
 
 
     Docker_Deploy:
-        runs-on: Dev
+        runs-on: self-hosted
         needs: UnitTest
         steps:
         -   name: Download Code
