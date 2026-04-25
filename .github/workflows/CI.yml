@@ -40,8 +40,7 @@ jobs:
             run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
 
         -   name: Docker-Compose Deploy
-            run: docker-compose down || true
-                docker-compose up -d
+            run: docker-compose down & docker-compose up -d
         -   name: Deployment Status
             run: echo "✅ Deployed with Docker Compose using image ${{ github.sha }}"             
                 
