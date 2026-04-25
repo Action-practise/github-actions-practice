@@ -68,6 +68,10 @@ jobs:
                 context: .
                 push: true
                 tags: ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
+        - name: Create .env file
+            run: |
+                echo "DOCKER_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}" > .env
+
 
         -   name: Pull Latest Image
             run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/gitaction_test:${{ github.sha }}
